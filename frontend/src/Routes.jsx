@@ -7,15 +7,20 @@ import FormListingUser from "./pages/FormListingPage/FormListingUser";
 import FormResponse from "./pages/FormResponsePage/FormResponse";
 import FormUser from "./pages/FormResponsePage/user";
 import FormLogin from "./pages/FormResponsePage/login";
+import FormStudent from "./pages/FormResponsePage/formStudent";
 import IndexAdmin from "./layout/admin";
 
 const routes = [
 	{
-		url: "/st",
+		url: "/",
+		component: FormStudent,
+	},
+	{
+		url: "/student",
 		component: FormUser,
 	},
 	{
-		url: "/",
+		url: "/structure",
 		component: FormLogin,
 	},
 	{

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector, batch } from "react-redux";
 import { Link } from "react-router-dom";
 import formActions from "./../../store/actions/formActions";
+import axios from "axios";
 // import "./FormListing.css";
 const Sitting = () => {
     	const dispatch = useDispatch();
@@ -18,6 +19,22 @@ const Sitting = () => {
 		console.log("forms", formList.length);
 		console.log("Response Count", totalResponses);
 	});
+	const downloadFile = async (filename) => {
+		try {
+		  const response = await axios.get(`${filename}`, { responseType: 'blob' });
+	  
+		  const url = window.URL.createObjectURL(new Blob([response.data]));
+		  const link = document.createElement('a');
+		  link.href = url;
+		  link.setAttribute('download', filename);
+		  document.body.appendChild(link);
+		  link.click();
+		  link.remove();
+		  window.URL.revokeObjectURL(url);
+		} catch (error) {
+		  console.log('Error downloading file:', error);
+		}
+	  };
     return ( 
         <>
         <div id="manage_product_category" class="manage_product_category main_section ">
@@ -37,11 +54,11 @@ const Sitting = () => {
   const response = form.response[0]; // استفاده از اولین عنصر آرایه به عنوان عنوان
   const number = form.number;
   const date = form.date; // تعریف متغیر تاریخ
-  console.log(response[1])
+  console.log(response[1].replace("C:\\fakepath\\", "http://localhost:3001/uploads/"));
   const { url } = form;
   return (
     <tr key={index}>
-      <td>{response[1]}</td>
+      <td >{response[1].replace("C:\\fakepath\\", "http://localhost:3001/uploads/")}<a onClick={() => downloadFile(response[1].replace("C:\\fakepath\\", "http://localhost:3001/uploads/"))} >دانلود برای فایل</a></td>
       <td>{number}</td>
     </tr>
   );

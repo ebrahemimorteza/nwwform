@@ -62,7 +62,7 @@ const CreateForm = () => {
 		<main className="mt-[6rem] w-fit mx-auto m-6 flex flex-col gap-6">
     <form className="max-w-[30rem] max-sm:w-full max-sm:text-sm  p-4">
         <h4 className="p-3 bg-gradient-to-bl from-orange-500 to-orange-400 text-white rounded-xl shadow-md">
-            همواره نظرات و پیشنهادات ارزنده شما ، باعث پیشرفت و خدمات رسانی بهتر ما بوده است. از این رو مشتاقانه منتظر ارسال ایده ها، پیشنهادات شما عزیزان هستیم</h4>
+            ورود استاد</h4>
         <div className="w-full my-4">
             <label for="name">
                 نام : </label>

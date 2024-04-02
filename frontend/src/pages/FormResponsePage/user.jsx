@@ -62,21 +62,25 @@ const CreateForm = () => {
 			const duplicateForm = formList[duplicateIndex];
 			setIclass(duplicateForm['formJson']['idClass']);
 			dispatch1(formActions.getForms());
-			setisOpen(true);
+			
 			localStorage.setItem('token', value);
-			alert('لطفا فرم های خود را پر  نمایید');
+			// alert('لطفا فرم های خود را پر  نمایید');
 		  } else {
 			alert('لطفا دوباره سعی کنید');
 		  }
 		}
 	  };
+	  const open =()=>{
+		setisOpen(true);
+	  }
 	return (
 		<main className="mt-[6rem] w-fit mx-auto m-6 flex flex-col gap-6">
     <form className="max-w-[30rem] max-sm:w-full max-sm:text-sm  p-4">
-        <h4 className="p-3 bg-gradient-to-bl from-orange-500 to-orange-400 text-white rounded-xl shadow-md">
-            همواره نظرات و پیشنهادات ارزنده شما ، باعث پیشرفت و خدمات رسانی بهتر ما بوده است. از این رو مشتاقانه منتظر ارسال ایده ها، پیشنهادات شما عزیزان هستیم</h4>
+	<h4 className="p-3 bg-gradient-to-bl from-orange-500 to-orange-400 text-white rounded-xl shadow-md" style={{margin:"10px"}}>
+	{isOpen ? (<>فرم های دانشجو</>):( <>ورود دانشجو</>)}</h4>
+	{isOpen ? (<></>): (<>
         <div className="w-full my-4">
-            <label for="name">
+		<label for="name">
                 نام : </label>
             <input 	value={formTitle}
 			onChange={(e) => setFormTitle(e.target.value)} name="name" className="rounded-xl bg-zinc-100 w-full mt-2 p-3 input-style  undefined" type="text" id="name" />
@@ -87,6 +91,8 @@ const CreateForm = () => {
             <input name="phonenumber" value={formNumber}
 			onChange={handleInputChange} className="rounded-xl bg-zinc-100 w-full mt-2 p-3 input-style  undefined" type="number" id="number"/>
         </div>
+		<div onClick={open}  className="p-3 font-bold shadow-lg rounded-xl bg-gradient-to-br from-orange-600 to-orange-300 w-full text-white flex gap-2 items-center justify-center">ورود<svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="text-xl" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></div>
+		</>)}
 	{isOpen ? (<div className="form-listing-container">
 	{formList1.length <= 0 && (
 		<p className="no-form-text">There is no form, please create one by pressing below 'create form' button.</p>
